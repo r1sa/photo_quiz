@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PhotoQuiz</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+  </head>
+
+  <body>
+    <header>
+      <% if user_signed_in? %>
+        <%= link_to "Top", home_show_path %>
+        Logged in as <strong><%= current_user.email %></strong>.
+        <%= link_to "新規投稿", new_post_path %> |
+        <%= link_to 'プロフィール変更', edit_user_registration_path %> |
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "サインイン", new_user_registration_path %> |
+        <%= link_to "ログイン", new_user_session_path %>
+      <% end %>
+    </header>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+  <%= yield %>
+
+  <footer>
+    Copyright©︎2020 PhotoQuiz.com, All Rights Reserved.
+  </footer>
+  </body>
+</html>

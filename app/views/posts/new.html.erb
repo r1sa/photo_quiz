@@ -1,0 +1,42 @@
+<div class="form posts-new">
+  <% @post.errors.full_messages.each do |message| %>
+    <div class="form-error">
+      <%= message %>
+    </div>
+  <% end %>
+
+  <%= form_with model:@post do |f| %>
+
+    <div class="field">
+      <%= f.label :image %><br />
+      <%= f.file_field :image %>
+    </div>
+
+    <div class="field">
+      <%= f.label :title %><br />
+      <%= f.text_field :title, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :comment %><br />
+      <%= f.text_field :comment, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :question %><br />
+      <%= f.text_field :question, autofocus: true %>
+    </div>
+
+    <%= f.label :answer_choices %><br />
+    <div class="field">
+      <%= f.fields_for :answer_choices do |f| %>
+        <%= render 'answer_choice_fields', f: f %>
+      <% end %>
+      <%= link_to_add_association '追加',f, :answer_choices %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Create" %>
+    </div>
+  <% end %>
+</div>

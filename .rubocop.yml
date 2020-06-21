@@ -1,0 +1,33 @@
+require:
+  - rubocop-rails
+
+Rails:
+  Enabled: true
+
+AllCops:
+  Exclude:
+    - 'bin/*'
+    - 'node_modules/**/*'
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+    - 'db/migrate/*.rb'
+    - 'config/**/*'
+    - 'app/channels/**/*'
+  DisplayCopNames: true
+
+# 日本語でのコメントを許可
+Style/AsciiComments:
+  Enabled: false
+
+# Missing top-level class documentation comment
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Layout/EndOfLine:
+  Enabled: false
+
+ClassAndModuleChildren:
+  EnforcedStyle: compact
