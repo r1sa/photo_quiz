@@ -46,6 +46,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:image, :title, :comment, :question, answer_choices_attributes: %i[id answer _destroy])
+    params.require(:post).permit(:image, :title, :comment, :question, answer_choices_attributes: %i[id answer is_correct_answer _destroy])
   end
 end
