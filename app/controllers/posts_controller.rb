@@ -32,7 +32,7 @@ class PostsController < ApplicationController
       flash[:notice] = '保存しました'
       redirect_to("/posts/#{@post.id}")
     else
-      render("posts/#{@post.id}/edit")
+      render('posts/edit')
     end
   end
 
