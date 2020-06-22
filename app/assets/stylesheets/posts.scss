@@ -5,8 +5,8 @@
   text-align: center;
 }
 .post_image{
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: 500px;
   //サイズ指定
   border-radius: 10px;
   //画像を丸くする
@@ -22,4 +22,14 @@
   //画像を丸くする
   object-fit: cover;
   //タテヨコ比を変えないままトリミング
+}
+
+.answer{
+  color: #ff4d75;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.post-answer{
+  text-align: center;
 }

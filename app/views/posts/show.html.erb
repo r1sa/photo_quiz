@@ -12,7 +12,7 @@
     </div>
   <% end %>
   <% @post.answer_choices.each do |answer_choice| %>
-    <p class="answer_choice"><%= answer_choice.answer %></p>
+    <p><%= link_to(answer_choice.answer, "/posts/#{@post.id}/answer") %></p>
   <% end %>
   <p class="posted_by">Posted by
     <img src=<%= @post.user.image %> class="user_image"><%= @post.user.name %>
