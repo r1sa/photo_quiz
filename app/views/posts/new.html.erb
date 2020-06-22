@@ -27,7 +27,7 @@
       <%= f.text_field :question, autofocus: true %>
     </div>
 
-    <%= f.label :answer_choices %><br />
+    <%= f.label :answer_choices %>／正解の答えにチェック<br />
     <div class="field">
       <%= f.fields_for :answer_choices do |f| %>
         <%= render 'answer_choice_fields', f: f %>
