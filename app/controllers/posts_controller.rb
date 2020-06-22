@@ -43,9 +43,18 @@ class PostsController < ApplicationController
     redirect_to('/home/show')
   end
 
+  def answer
+    @post = Post.find_by(id: params[:id])
+    answers = AnswerChoice.where(post_id: params[:id], is_correct_answer: true).pluck(:answer)
+    answers.each do |answer|
+      @answer = @answer ? @answer + ', ' + answer : answer
+    end
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:image, :title, :comment, :question, answer_choices_attributes: %i[id answer is_correct_answer _destroy])
+    params.require(:post).permit(:image, :title, :comment, :question,
+                                 answer_choices_attributes: %i[id answer is_correct_answer _destroy])
   end
 end
