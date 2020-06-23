@@ -1,11 +1,5 @@
-<div class="home">
+<div class="home home-show">
   <h1>Hello!</h1>
   <p>楽しく遊んで写真を共有しよう★</p>
-  <% @posts.each do |post| %>
-    <div class="post">
-      <%= link_to(post_path(post.id)) do %>
-        <img src=<%= post.image %>>
-      <% end %>
-    </div>
-  <% end %>
+  <%= render 'posts' , f: @posts%>
 </div>

@@ -1,0 +1,7 @@
+<% f.each do |post| %>
+  <div class="post">
+    <%= link_to(post_path(post.id)) do %>
+      <img src=<%= post.image %>>
+    <% end %>
+  </div>
+<% end %>
