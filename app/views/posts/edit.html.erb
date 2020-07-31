@@ -5,7 +5,9 @@
     </div>
   <% end %>
 
-  <%= form_with model:@post do |f| %>
+  <input name="post_answer_type" type="hidden" value=<%= @post.answer_type %> class='post_answer_type'/>
+
+  <%= form_with model:@post, local: true do |f| %>
 
     <div class="field">
       <%= f.label :image %><br />
@@ -27,16 +29,33 @@
       <%= f.text_field :question, autofocus: true %>
     </div>
 
-    <%= f.label :answer_choices %><br />
     <div class="field">
+      <%= f.label :answer_type %><br />
+      <%= f.radio_button :answer_type, :choice %>
+      <%= f.label :answer_type, "選択式", {value: :choice, style: "display: inline-block;"} %>
+      <%= f.radio_button :answer_type, :click_photo %>
+      <%= f.label :answer_type, "画像クリック式", {value: :click_photo, style: "display: inline-block;"} %>
+    </div>
+
+    <div class="field answer_choices_fields">
       <%= f.fields_for :answer_choices do |f| %>
         <%= render 'answer_choice_fields', f: f %>
       <% end %>
       <%= link_to_add_association '追加',f, :answer_choices %>
     </div>
 
+    <div class="field answer_positions_fields">
+      <%= f.fields_for :answer_positions do |f| %>
+        <%= render 'answer_position_fields', f: f %>
+      <% end %>
+      <%= link_to_add_association '追加',f, :answer_positions %>
+    </div>
+
     <div class="actions">
       <%= f.submit "Update" %>
     </div>
+    <%= link_to('キャンセル', "/posts/#{@post.id}") %>
   <% end %>
 </div>
+<%= javascript_pack_tag 'post/edit.js' %>
+<%= javascript_pack_tag 'post/common.js' %>

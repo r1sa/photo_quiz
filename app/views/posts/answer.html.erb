@@ -1,0 +1,23 @@
+<div class="post-answer">
+  <h1><%= @result %>
+    <% if @post.answer_type == 'choice' %>
+      正解は・・・<span class="answer"><%= @answer %></span>でした！
+    <% end %>
+  </h1>
+  <div class='post_image'>
+    <% if @post.answer_type == 'choice' %>
+      <img src=<%= @post.image %> class="post_image">
+    <% elsif @post.answer_type == 'click_photo' %>
+      <img src=<%= @post.image %> usemap="#post" class="answer_position" >
+      <map name="post">
+        <area shape=<%= "#{@post.answer_positions.first.shape_type}" %> coords=<%= "#{@post.answer_positions.first.coords}" %>>
+      </map>
+    <% end %>
+  </div>
+  <p><%= @post.comment %></p>
+  <p class="posted_by">Posted by
+    <img src=<%= @post.user.image %> class="user_image"><%= @post.user.name %>
+    at: <%= @post.created_at %>
+  </p>
+</div>
+<%= javascript_pack_tag 'post/answer.js' %>

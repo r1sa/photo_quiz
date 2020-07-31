@@ -18,12 +18,16 @@
   padding: 10px 15px;
 
   img{
-    width: 500px;
-    height: 500px;
+    width: 300px;
+    height: 300px;
     //サイズ指定
     border-radius: 10px;
     //画像を丸くする
     object-fit: cover;
     //タテヨコ比を変えないままトリミング
   }
+}
+
+.form-error {
+  color: #ff4d75;
 }

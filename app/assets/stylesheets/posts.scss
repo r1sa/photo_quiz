@@ -4,12 +4,12 @@
 .post-show{
   text-align: center;
 }
-.post_image{
-  width: 600px;
-  height: 600px;
-  //サイズ指定
+.post_image img{
   border-radius: 10px;
   //画像を丸くする
+  width: 600px;
+  margin: 0 auto;
+  //サイズ指定
   object-fit: cover;
   //タテヨコ比を変えないままトリミング
 }
@@ -22,4 +22,14 @@
   //画像を丸くする
   object-fit: cover;
   //タテヨコ比を変えないままトリミング
+}
+
+.answer{
+  color: #ff4d75;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.post-answer{
+  text-align: center;
 }

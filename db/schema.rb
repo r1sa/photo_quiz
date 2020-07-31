@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_19_121919) do
+ActiveRecord::Schema.define(version: 2020_07_09_034055) do
 
   create_table "answer_choices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "post_id"
     t.text "answer"
+    t.boolean "is_correct_answer", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "answer_positions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "shape_type"
+    t.string "coords"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -26,6 +35,7 @@ ActiveRecord::Schema.define(version: 2020_06_19_121919) do
     t.string "title"
     t.text "comment"
     t.string "question"
+    t.integer "answer_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
