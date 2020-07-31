@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.date = Time.zone.today
-    if answer_type && @post.save!
+    if answer_type? && @post.save!
       flash[:notice] = '投稿しました'
       redirect_to("/posts/#{@post.id}")
     else
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     Post.transaction do
       @post.assign_attributes(post_params)
-      if answer_type && @post.save!
+      if answer_type? && @post.save!
         flash[:notice] = '保存しました'
         redirect_to("/posts/#{@post.id}")
       else
@@ -79,7 +79,7 @@ class PostsController < ApplicationController
     end
   end
 
-  def answer_type
+  def answer_type?
     if @post.answer_type == 'choice'
       @post.answer_positions.destroy_all
       !@post.answer_choices.empty?
