@@ -49,6 +49,7 @@ test:
 #
 production:
   <<: *default
-  database: photo_quiz_production
-  username: photo_quiz
-  password: <%= ENV['PHOTO_QUIZ_DATABASE_PASSWORD'] %>
+  database: heroku_f7ce5bc2e07a399
+  username: b4fb60832593b6
+  password: 07a269fe
+  host: us-cdbr-east-02.cleardb.com
