@@ -1,6 +1,16 @@
 <div class="post-show">
-  <h1><%= @post.question %></h1>
-  <img src=<%= @post.image %> class="post_image">
+  <h1><%= @result ? @result:@post.question %></h1>
+  <div class='post_image'>
+    <% if @post.answer_type == 'choice' %>
+      <img src=<%= @post.image %> class="post_image">
+    <% elsif @post.answer_type == 'click_photo' %>
+      <img src=<%= @post.image %> usemap='#post'>
+      <map name="post">
+        <area shape=<%= "#{@post.answer_positions.first.shape_type}" %> coords=<%= "#{@post.answer_positions.first.coords}" %> href=<%= "/posts/#{@post.id}/correct_answer"%>>
+        <area shape="default" href=<%= "/posts/#{@post.id}/wrong_answer"%>>
+      </map>
+    <% end %>
+  </div>
   <% if user_signed_in? && @post.user.id == current_user.id %>
     <div>
       <%= link_to(edit_post_path(@post.id)) do %>
@@ -11,9 +21,14 @@
       <% end %>
     </div>
   <% end %>
-  <% @post.answer_choices.each do |answer_choice| %>
-    <p><%= link_to(answer_choice.answer, "/posts/#{@post.id}/answer") %></p>
+  <% if @post.answer_type == 'choice' %>
+    <% @post.answer_choices.each do |answer_choice| %>
+      <p><%= link_to(answer_choice.answer, "/posts/#{@post.id}/answer/#{answer_choice.id}") %></p>
+    <% end %>
+  <% elsif @post.answer_type == 'click_photo' %>
+    <p>答えの場所をクリックしてみよう！</p>
   <% end %>
+  <%= link_to("答えをみる", "/posts/#{@post.id}/answer") %>
   <p class="posted_by">Posted by
     <img src=<%= @post.user.image %> class="user_image"><%= @post.user.name %>
     at: <%= @post.created_at %>
